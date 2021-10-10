@@ -1,7 +1,10 @@
-import { useState,useEffect } from 'react'
+import { useState,useEffect ,useContext} from 'react'
+import { challengeContext } from '../context/ChallengesContext'
 import styles from '../styles/component/Countdown.module.css'
 
 export function Countdown(){
+
+    const {startNewChallenge}= useContext(challengeContext) 
 
     //This is an typescript of timeout
     let countDownDelay : NodeJS.Timeout
@@ -40,6 +43,7 @@ export function Countdown(){
         } else if(isActive && time===0){
             setHasFinished(true)
             setIsActive(false)
+            startNewChallenge()
         }
 
     },[isActive,time])
